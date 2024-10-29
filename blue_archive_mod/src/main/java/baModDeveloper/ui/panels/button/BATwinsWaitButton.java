@@ -1,10 +1,12 @@
 package baModDeveloper.ui.panels.button;
 
+import BlueArchive_Aris.characters.Aris;
 import YUZUMod.character.YuzuCharacter;
 import baModDeveloper.character.BATwinsCharacter;
 import baModDeveloper.effect.BATwinsWaitEventEffect;
 import baModDeveloper.helpers.ModHelper;
 import baModDeveloper.helpers.TextureLoader;
+import baModDeveloper.relic.BATwinsAlice;
 import baModDeveloper.relic.BATwinsTwins;
 import baModDeveloper.relic.BATwinsYUZU;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,7 +27,7 @@ public class BATwinsWaitButton extends AbstractCampfireOption {
     static {
         characters[0]= BATwinsWaitEventEffect.WaitCharacter.YUZU;
         characters[1]= BATwinsWaitEventEffect.WaitCharacter.MOMOIMIDORI;
-//        characters[2]= BATwinsWaitEventEffect.WaitCharacter.ALICE;
+        characters[2]= BATwinsWaitEventEffect.WaitCharacter.ALICE;
     }
     public BATwinsWaitButton(){
         this.label = TEXT[0];
@@ -41,11 +43,15 @@ public class BATwinsWaitButton extends AbstractCampfireOption {
             list.remove(BATwinsWaitEventEffect.WaitCharacter.YUZU);
         }else if(AbstractDungeon.player instanceof BATwinsCharacter){
             list.remove(BATwinsWaitEventEffect.WaitCharacter.MOMOIMIDORI);
+        }else if(AbstractDungeon.player instanceof Aris){
+            list.remove(BATwinsWaitEventEffect.WaitCharacter.ALICE);
         }
         if(AbstractDungeon.player.hasRelic(BATwinsYUZU.ID)){
             list.remove(BATwinsWaitEventEffect.WaitCharacter.YUZU);
         }else if(AbstractDungeon.player.hasRelic(BATwinsTwins.ID)){
             list.remove(BATwinsWaitEventEffect.WaitCharacter.MOMOIMIDORI);
+        }else if(AbstractDungeon.player.hasRelic(BATwinsAlice.ID)){
+            list.remove(BATwinsWaitEventEffect.WaitCharacter.ALICE);
         }
         if(!list.isEmpty()){
             Collections.shuffle(list,new Random(AbstractDungeon.miscRng.randomLong()));

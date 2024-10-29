@@ -234,5 +234,12 @@
 		"DESCRIPTIONS": [
 			"...."
 		]
+	},
+	"BATwinsMod:Alice": {
+		"NAME": "爱丽丝加入队伍了",
+		"FLAVOR": "加入了",
+		"DESCRIPTIONS": [
+			"...."
+		]
 	}
 }

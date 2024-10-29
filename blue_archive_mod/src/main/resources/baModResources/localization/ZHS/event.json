@@ -155,5 +155,16 @@
 			"桃绿！！！",
 			"好的"
 		]
+	},
+	"BATwinsMod:WaitForAlice": {
+		"NAME": "爱丽丝加入队伍了",
+		"DESCRIPTIONS": [
+			"是爱丽丝",
+			"加入队伍了"
+		],
+		"OPTIONS": [
+			"爱丽丝！！！",
+			"好的"
+		]
 	}
 }

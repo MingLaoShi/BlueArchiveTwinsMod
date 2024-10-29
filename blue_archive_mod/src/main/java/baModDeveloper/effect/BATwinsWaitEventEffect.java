@@ -1,5 +1,6 @@
 package baModDeveloper.effect;
 
+import baModDeveloper.event.BATwinsWaitForAlice;
 import baModDeveloper.event.BATwinsWaitForTwins;
 import baModDeveloper.event.BATwinsWaitForYUZU;
 import baModDeveloper.helpers.BATwinsWaitEvent;
@@ -33,6 +34,9 @@ public class BATwinsWaitEventEffect extends AbstractGameEffect {
                 break;
             case MOMOIMIDORI:
                 event = new BATwinsWaitForTwins();
+                break;
+            case ALICE:
+                event=new BATwinsWaitForAlice();
                 break;
             default:
                 ModHelper.logger.error("Unknown characterEvent!");
