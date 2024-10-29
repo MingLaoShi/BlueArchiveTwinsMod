@@ -227,5 +227,12 @@
 		"DESCRIPTIONS": [
 			"回合开始时，打出1张柚子卡组里的卡。"
 		]
+	},
+	"BATwinsMod:Twins": {
+		"NAME": "桃绿加入队伍了",
+		"FLAVOR": "加入了",
+		"DESCRIPTIONS": [
+			"...."
+		]
 	}
 }

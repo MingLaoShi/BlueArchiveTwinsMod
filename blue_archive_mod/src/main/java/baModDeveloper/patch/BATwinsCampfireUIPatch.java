@@ -1,6 +1,7 @@
 package baModDeveloper.patch;
 
 import baModDeveloper.cards.BATwinsModCustomCard;
+import baModDeveloper.helpers.ModHelper;
 import baModDeveloper.ui.panels.button.BATwinsCamfireExchangeButton;
 import baModDeveloper.ui.panels.button.BATwinsWaitButton;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
@@ -29,9 +30,9 @@ public class BATwinsCampfireUIPatch {
             }
 
             //添加dlc等待按钮
-//            if(ModHelper.ENABLE_DLC){
+            if(ModHelper.ENABLE_DLC&&ModHelper.isDlcCharacter(AbstractDungeon.player)){
                 ___buttons.add(new BATwinsWaitButton());
-//            }
+            }
         }
     }
 }

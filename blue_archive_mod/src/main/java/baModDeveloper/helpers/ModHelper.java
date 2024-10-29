@@ -1,5 +1,6 @@
 package baModDeveloper.helpers;
 
+import YUZUMod.character.YuzuCharacter;
 import baModDeveloper.BATwinsMod;
 import baModDeveloper.character.BATwinsCharacter;
 import baModDeveloper.localization.SoraItemStrings;
@@ -7,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
@@ -113,5 +115,9 @@ public class ModHelper {
         //todo:记得删掉
         ENABLE_DLC=true;
         return ENABLE_DLC;
+    }
+
+    public static boolean isDlcCharacter(AbstractPlayer player){
+        return player instanceof YuzuCharacter||player instanceof BATwinsCharacter;
     }
 }

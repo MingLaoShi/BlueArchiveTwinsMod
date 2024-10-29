@@ -1,5 +1,6 @@
 package baModDeveloper.effect;
 
+import baModDeveloper.event.BATwinsWaitForTwins;
 import baModDeveloper.event.BATwinsWaitForYUZU;
 import baModDeveloper.helpers.BATwinsWaitEvent;
 import baModDeveloper.helpers.ModHelper;
@@ -18,7 +19,7 @@ public class BATwinsWaitEventEffect extends AbstractGameEffect {
     }
 
     AbstractImageEvent event;
-    EventRoom room=new EventRoom();
+    EventRoom room = new EventRoom();
 
     public BATwinsWaitEventEffect(WaitCharacter character) {
         this.initEvent(character);
@@ -30,13 +31,16 @@ public class BATwinsWaitEventEffect extends AbstractGameEffect {
             case YUZU:
                 event = new BATwinsWaitForYUZU();
                 break;
+            case MOMOIMIDORI:
+                event = new BATwinsWaitForTwins();
+                break;
             default:
                 ModHelper.logger.error("Unknown characterEvent!");
         }
 
-        room.phase= AbstractRoom.RoomPhase.EVENT;
+        room.phase = AbstractRoom.RoomPhase.EVENT;
         AbstractDungeon.overlayMenu.proceedButton.hide();
-        room.event=event;
+        room.event = event;
     }
 
     @Override

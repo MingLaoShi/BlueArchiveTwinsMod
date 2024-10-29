@@ -345,6 +345,7 @@ public class BATwinsMod implements EditCardsSubscriber, EditStringsSubscriber, E
         BaseMod.addRelic(new BATwinsFileBag(),RelicType.SHARED);
         if(ModHelper.ENABLE_DLC){
             BaseMod.addRelic(new BATwinsYUZU(),RelicType.SHARED);
+            BaseMod.addRelic(new BATwinsTwins(),RelicType.SHARED);
         }
     }
 

@@ -144,5 +144,16 @@
 			"柚子！！！",
 			"好的"
 		]
+	},
+	"BATwinsMod:WaitForTwins": {
+		"NAME": "桃绿加入队伍了",
+		"DESCRIPTIONS": [
+			"是桃绿",
+			"加入队伍了"
+		],
+		"OPTIONS": [
+			"桃绿！！！",
+			"好的"
+		]
 	}
 }
