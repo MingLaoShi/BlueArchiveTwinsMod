@@ -133,5 +133,16 @@
 			"#g给她 获得%d金币，获得 #b%s 。",
 			"离开"
 		]
+	},
+	"BATwinsMod:WaitForYuzu": {
+		"NAME": "柚子加入队伍了",
+		"DESCRIPTIONS": [
+			"是柚子",
+			"加入队伍了"
+		],
+		"OPTIONS": [
+			"柚子！！！",
+			"好的"
+		]
 	}
 }

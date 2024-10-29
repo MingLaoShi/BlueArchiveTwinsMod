@@ -166,5 +166,10 @@
 			"soraMsg2",
 			"soraMsg3"
 		]
+	},
+	"BATwinsMod:WaitButton": {
+		"TEXT": [
+			"等待"
+		]
 	}
 }

@@ -1,12 +1,18 @@
 package baModDeveloper.patch;
 
+import YUZUMod.character.YuzuCharacter;
 import baModDeveloper.cards.BATwinsModCustomCard;
 import baModDeveloper.character.BATwinsCharacter;
 import baModDeveloper.core.BATwinsEnergyManager;
+import baModDeveloper.helpers.DlcUIs;
+import baModDeveloper.helpers.ModHelper;
 import baModDeveloper.power.BATwinsBorrowMePower;
+import baModDeveloper.relic.BATwinsYUZU;
 import baModDeveloper.ui.panels.BATwinsEnergyPanel;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.EnergyManager;
@@ -50,5 +56,18 @@ public class BATwinsAbstractPlayerPatch {
         }
 
 
+    }
+
+    @SpirePatch(clz = AbstractPlayer.class,method = "render",requiredModId = "BlueArchive_yuzu_Mod")
+    @SuppressWarnings("unused")
+    public static class renderPatch{
+        @SpirePrefixPatch
+        public static void prefixPatch(AbstractPlayer _instance, SpriteBatch sb){
+            if(ModHelper.ENABLE_DLC&&AbstractDungeon.player.hasRelic(BATwinsYUZU.ID)&&
+                    !(AbstractDungeon.player instanceof YuzuCharacter)){
+                DlcUIs.criticalRatePanel.update();
+                DlcUIs.criticalRatePanel.render(sb);
+            }
+        }
     }
 }

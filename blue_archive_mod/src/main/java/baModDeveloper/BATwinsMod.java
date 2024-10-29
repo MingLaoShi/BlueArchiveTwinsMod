@@ -7,6 +7,7 @@ import baModDeveloper.cards.colorless.BATwinsExcitation;
 import baModDeveloper.character.BATwinsCharacter;
 import baModDeveloper.character.BATwinsCharacter.Enums;
 import baModDeveloper.event.*;
+import baModDeveloper.helpers.DlcUIs;
 import baModDeveloper.helpers.ModHelper;
 import baModDeveloper.helpers.SaveHelper;
 import baModDeveloper.localization.SoraItemStrings;
@@ -342,6 +343,9 @@ public class BATwinsMod implements EditCardsSubscriber, EditStringsSubscriber, E
         BaseMod.addRelic(new BATwinsCrystalHaniwa(),RelicType.SHARED);
         BaseMod.addRelic(new BATwinsPackage(),RelicType.SHARED);
         BaseMod.addRelic(new BATwinsFileBag(),RelicType.SHARED);
+        if(ModHelper.ENABLE_DLC){
+            BaseMod.addRelic(new BATwinsYUZU(),RelicType.SHARED);
+        }
     }
 
     @Override
@@ -362,6 +366,7 @@ public class BATwinsMod implements EditCardsSubscriber, EditStringsSubscriber, E
         BaseMod.addAudio(ModHelper.makePath("soraMsg1"), ModHelper.makeAudioPath("soraMsg1"));
         BaseMod.addAudio(ModHelper.makePath("soraMsg2"), ModHelper.makeAudioPath("soraMsg2"));
         BaseMod.addAudio(ModHelper.makePath("soraMsg3"), ModHelper.makeAudioPath("soraMsg3"));
+        BaseMod.addAudio(ModHelper.makePath("yuzu"),ModHelper.makeAudioPath("yuzu"));
 
     }
 
@@ -477,6 +482,9 @@ public class BATwinsMod implements EditCardsSubscriber, EditStringsSubscriber, E
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         BATwinsSelfConnectivity.EasterEggCard = AbstractDungeon.returnRandomCard();
+        if(ModHelper.ENABLE_DLC){
+            DlcUIs.criticalRatePanel.reset();
+        }
     }
 
     @Override

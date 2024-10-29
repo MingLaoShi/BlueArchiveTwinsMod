@@ -110,6 +110,8 @@ public class ModHelper {
 
     public static boolean isEnableDlc(){
         ENABLE_DLC=Loader.isModLoaded("BlueArchive_yuzu_Mod")&&Loader.isModLoaded("BlueArchive_Aris");
+        //todo:记得删掉
+        ENABLE_DLC=true;
         return ENABLE_DLC;
     }
 }
