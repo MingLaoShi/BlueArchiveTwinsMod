@@ -112,12 +112,17 @@ public class ModHelper {
 
     public static boolean isEnableDlc(){
         ENABLE_DLC=Loader.isModLoaded("BlueArchive_yuzu_Mod")&&Loader.isModLoaded("BlueArchive_Aris");
-        //todo:记得删掉
-        ENABLE_DLC=true;
         return ENABLE_DLC;
     }
 
     public static boolean isDlcCharacter(AbstractPlayer player){
         return player instanceof YuzuCharacter||player instanceof BATwinsCharacter;
+    }
+
+    public static boolean isYUZULoaded(){
+        return Loader.isModLoaded("BlueArchive_yuzu_Mod");
+    }
+    public static boolean isAliceLoaded(){
+        return Loader.isModLoaded("BlueArchive_Aris");
     }
 }

@@ -1,44 +1,46 @@
 package baModDeveloper.relic;
 
-import BlueArchive_Aris.cards.*;
+import BlueArchive_Aris.cards.AbstractDynamicCard;
+import BlueArchive_Aris.characters.Aris;
+import baModDeveloper.helpers.BATwinsCharacterRelic;
 import baModDeveloper.helpers.ModHelper;
 import baModDeveloper.helpers.TextureLoader;
 import basemod.abstracts.CustomRelic;
-import basemod.cardmods.EtherealMod;
-import basemod.cardmods.ExhaustMod;
-import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.modthespire.Loader;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import java.util.ArrayList;
 
-public class BATwinsAlice extends CustomRelic {
-    public static final String ID= ModHelper.makePath("Alice");
-    private static final Texture texture= TextureLoader.getTexture(ModHelper.makeImgPath("relic","Alice"));
-    private static final Texture outline= TextureLoader.getTexture(ModHelper.makeImgPath("relic","Alice"));
-    private static final RelicTier type=RelicTier.SPECIAL;
-    public static ArrayList<AbstractDynamicCard> cards=new ArrayList<>();
-    static {
-        if(Loader.isModLoaded("BlueArchive_Aris")){
-            cards.add(new SuperNova());
-            cards.add(new WoodenStick());
-            cards.add(new Mask());
-            cards.add(new Rogue());
-            cards.add(new IdolRibbon());
-            cards.add(new WizardHat());
-            cards.add(new DevilYuuka());
-        }
-    }
-    private CardGroup group;
+public class BATwinsAlice extends CustomRelic implements BATwinsCharacterRelic {
+    public static final String ID = ModHelper.makePath("Alice");
+    private static final Texture texture = TextureLoader.getTexture(ModHelper.makeImgPath("relic", "Alice"));
+    private static final Texture outline = TextureLoader.getTexture(ModHelper.makeImgPath("relic", "Alice"));
+    private static final RelicTier type = RelicTier.SPECIAL;
+    public static ArrayList<AbstractDynamicCard> cards = new ArrayList<>();
+    private AbstractPlayer player;
+    private float offset = -300.0F * Settings.xScale;
+
+    //    static {
+//        if(Loader.isModLoaded("BlueArchive_Aris")){
+//            cards.add(new SuperNova());
+//            cards.add(new WoodenStick());
+//            cards.add(new Mask());
+//            cards.add(new Rogue());
+//            cards.add(new IdolRibbon());
+//            cards.add(new WizardHat());
+//            cards.add(new DevilYuuka());
+//        }
+//    }
+//    private CardGroup group;
     public BATwinsAlice() {
-        super(ID, texture,outline,type, LandingSound.MAGICAL);
-        this.group=new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        for(AbstractCard card:cards){
-            group.addToBottom(card);
+        super(ID, texture, outline, type, LandingSound.MAGICAL);
+        if (ModHelper.isAliceLoaded()) {
+            this.player = new Aris("", Aris.Enums.ARIS);
+            this.player.hideHealthBar();
         }
     }
 
@@ -50,11 +52,27 @@ public class BATwinsAlice extends CustomRelic {
     @Override
     public void atTurnStart() {
         super.atTurnStart();
-        AbstractCard card=group.getRandomCard(AbstractDungeon.miscRng);
-        card.freeToPlayOnce=true;
-        CardModifierManager.addModifier(card,new ExhaustMod());
-        CardModifierManager.addModifier(card,new EtherealMod());
-        addToBot(new MakeTempCardInHandAction(card,1));
+    }
 
+
+    @Override
+    public void updateCharacter() {
+        if (ModHelper.isAliceLoaded()) {
+            if (AbstractDungeon.isPlayerInDungeon() && AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+                this.player.update();
+                this.player.drawX = AbstractDungeon.player.drawX + this.offset;
+                this.player.hb.moveX(this.player.drawX);
+                this.player.flipHorizontal=AbstractDungeon.player.flipHorizontal;
+            }
+        }
+    }
+
+    @Override
+    public void renderCharacter(SpriteBatch sb) {
+        if (ModHelper.isAliceLoaded()) {
+            if (AbstractDungeon.isPlayerInDungeon() && AbstractDungeon.player != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+                this.player.renderPlayerImage(sb);
+            }
+        }
     }
 }
