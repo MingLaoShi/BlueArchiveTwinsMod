@@ -118,6 +118,9 @@ public class BATwinsByProving extends CustomRelic implements CustomSavable<Strin
 
     @Override
     public void onLoad(String s) {
+        if(s==null|| s.isEmpty()){
+            return;
+        }
         this.card = CardLibrary.getCard(s);
         this.description = getUpdatedDescription();
         this.flavorText = String.format("一块崭新的奖章，上面写着\n新手关卡通过证明！--%s。", getCurrentDate());
