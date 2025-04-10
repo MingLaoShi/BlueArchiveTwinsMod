@@ -1,5 +1,6 @@
 package baModDeveloper.relic;
 
+import baModDeveloper.cards.BATwinsSelfConnectivity;
 import baModDeveloper.helpers.ModHelper;
 import baModDeveloper.helpers.TextureLoader;
 import basemod.abstracts.CustomRelic;
@@ -92,7 +93,11 @@ public class BATwinsByProving extends CustomRelic implements CustomSavable<Strin
         }
         if (Objects.equals(c.cardID, this.card.cardID)) {
             this.flash();
-            switch (c.type) {
+            AbstractCard.CardType cardType=c.type;
+            if(card.cardID.equals(BATwinsSelfConnectivity.ID)){
+                cardType= AbstractCard.CardType.SKILL;
+            }
+            switch (cardType) {
                 case ATTACK:
                     AbstractMonster monster = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(true);
                     int damage = c.damage;
