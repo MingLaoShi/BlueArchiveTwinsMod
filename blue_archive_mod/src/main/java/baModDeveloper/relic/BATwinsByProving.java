@@ -113,7 +113,10 @@ public class BATwinsByProving extends CustomRelic implements CustomSavable<Strin
 
     @Override
     public String onSave() {
-        return card.cardID;
+        if(card!=null){
+            return card.cardID;
+        }
+        return "";
     }
 
     @Override

@@ -25,9 +25,9 @@ public class BATwinsAdditionalAttacksAction extends AbstractGameAction {
     public void update() {
         this.target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         this.card.calculateCardDamage((AbstractMonster) this.target);
-        AbstractDungeon.effectsQueue.add(new BATwinsAdditionAttacksEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, target.hb.cX, target.hb.cY, BATwinsCharacter.getColorWithCardColor(this.color).cpy()));
 
         if (this.target != null) {
+            AbstractDungeon.effectsQueue.add(new BATwinsAdditionAttacksEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, target.hb.cX, target.hb.cY, BATwinsCharacter.getColorWithCardColor(this.color).cpy()));
             this.addToTop(new DamageAction(this.target, new DamageInfo(AbstractDungeon.player,this.card.damage), this.effect));
         }
 

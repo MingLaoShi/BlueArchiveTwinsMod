@@ -38,7 +38,7 @@ public class BATwinsTemporaryAssistance extends BATwinsModCustomCard {
 
     @Override
     public void useMIDORI(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-        addToBot(new BATwinsExchangeAction(1, true));
+        addToBot(new BATwinsExchangeAction(this.magicNumber, true));
     }
 
     @Override
