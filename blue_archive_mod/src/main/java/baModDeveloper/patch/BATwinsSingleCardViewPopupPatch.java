@@ -92,10 +92,10 @@ public class BATwinsSingleCardViewPopupPatch {
         @SpireInsertPatch(rloc = 12)
         public static void updateInputPatch1(SingleCardViewPopup _instance, Hitbox ___cardHb) {
             hovered = FieldPatch.exchangeHb.get(_instance).hovered;
-            ___cardHb.hovered = hovered;
+            ___cardHb.hovered |= hovered;
         }
 
-        @SpireInsertPatch(rloc = 24)
+        @SpireInsertPatch(rloc = 27)
         public static void updateInputPatch2(SingleCardViewPopup _instance, Hitbox ___cardHb) {
             if (hovered) {
                 ___cardHb.hovered = false;
